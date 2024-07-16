@@ -16,7 +16,7 @@ TARGET_IP_RANGE=$(cat $IP_FILE)
 
 PORTS="80,443,8080,8000,8443,8081,591,82,8880,8008,8081"
 
-masscan -p $PORTS $TARGET_IP_RANGE --rate=1000 -oG - | awk '/Host:/ {print $4}' > live_hosts.txt
+sudo masscan -p $PORTS $TARGET_IP_RANGE --rate=1000 -oG - | awk '/Host:/ {print $4}' > live_hosts.txt
 
 echo "Live IP addresses saved to live_hosts.txt"
 

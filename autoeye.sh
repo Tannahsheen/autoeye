@@ -37,7 +37,7 @@ if [ $? -ne 0 ]; then
 fi
 
 # Extract live IPs with ports
-awk '/Host:/ {print $4 ":" $6}' masscan_output.txt | sort -u > live_hosts.txt
+awk '/Host:/ {print $4 ":" $6}' masscan_output.txt | sort -u | grep -E '^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+:[0-9]+$' > live_hosts.txt
 if [ ! -s live_hosts.txt ]; then
     echo "No live hosts found. Exiting."
     rm masscan_output.txt

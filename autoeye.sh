@@ -32,7 +32,7 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-awk '/Discovered open port/ {gsub(/[()]/, "", $6); print $6 ":" $4}' "$TMP_OUTPUT" | sort -u > live_hosts.txt
+awk '/Discovered open port/ {gsub(/[()]/, "", $6); print $6}' "$TMP_OUTPUT" | sort -u > live_hosts.txt
 rm "$TMP_OUTPUT"
 if [ ! -s live_hosts.txt ]; then
     echo "No live hosts found. Exiting."
